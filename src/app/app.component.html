@@ -1,1 +1,5 @@
-<p>Welcome to Pokedex</p>
+<h2>Welcome to Pokedex</h2><br/>
+<div *ngFor="let pokemon of pokemons">
+  <h3>{{ pokemon.name }}</h3>
+  <p>{{ pokemon.url }}</p><br/>
+</div>
