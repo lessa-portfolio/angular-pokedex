@@ -1,4 +1,4 @@
-import { IPokemon } from './interfaces/IPokemon';
+import { IPokemonInfo } from './interfaces/IPokemon';
 import { PokemonService } from './services/pokemon.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public pokemons: IPokemon[];
+  pokemonList: IPokemonInfo[]; // oficial
 
   constructor(private pokemonService: PokemonService) { }
 
@@ -16,9 +16,19 @@ export class AppComponent implements OnInit {
     this.getPokemons();
   }
 
-  getPokemons() {
-    this.pokemonService.getPokemonList().subscribe(pokemonsList => {
-      this.pokemons = pokemonsList.results
+  getPokemons(): void {
+    this.pokemonService.getPokemonList().subscribe({
+      next: pokemons => {
+        this.pokemonList = [];
+        pokemons.forEach(pokemon => this.getPokemonInfo(pokemon.url));
+      },
+    });
+  }
+
+  getPokemonInfo(url: string): void {
+    this.pokemonService.getPokemonInfo(url).subscribe({
+      next: pokemon => this.pokemonList.push(pokemon),
+      complete: () => console.log(this.pokemonList),
     });
   }
 }

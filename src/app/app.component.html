@@ -1,5 +1,12 @@
-<h2>Welcome to Pokedex</h2><br/>
-<div *ngFor="let pokemon of pokemons">
-  <h3>{{ pokemon.name }}</h3>
-  <p>{{ pokemon.url }}</p><br/>
+<h2>Welcome to Pokedex</h2>
+<div *ngFor="let pokemon of pokemonList">
+  <img [src]="pokemon.urlImage" [alt]="pokemon.name">
+  <h4>{{ pokemon.name }}</h4>
+  <p>{{ pokemon.height }}</p>
+  <p>{{ pokemon.weight }}</p>
+
+  <div *ngFor="let type of pokemon.types">
+    <span>{{ type }}</span>
+  </div>
+  <br>
 </div>
