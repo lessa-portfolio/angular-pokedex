@@ -1,35 +1,90 @@
-<h2>Welcome to Pokedex</h2>
+<header>
+  <h2>Welcome to Pokedex</h2>
+</header>
+
 
 <div class="pokedex__pokemon-list">
-  <div *ngFor="let pokemon of pokemonList" class="pokedex__pokemon">
-    <img [src]="pokemon?.urlImage" [alt]="pokemon?.name">
-    <h4>{{ pokemon?.name }}</h4>
-    <p>{{ pokemon?.height }}</p>
-    <p>{{ pokemon?.weight }}</p>
-
-    <div *ngFor="let type of pokemon?.types">
-      <span>{{ type }}</span>
+  <div *ngFor="let pokemon of pokemonList" class="pokedex__pokemon-card">
+    <div class="pokedex__pokemon-image">
+      <img [src]="pokemon?.urlImage" [alt]="pokemon?.name">
+    </div>
+    <div class="pokedex__pokemon-info">
+      <h4>{{ pokemon?.name }}</h4>
+      <div class="pokedex__pokemon-type" *ngFor="let type of pokemon?.types">
+        <span class="pill" [ngClass]="{
+          'background-color-bug': type === 'bug',
+          'background-color-dark': type === 'dark',
+          'background-color-dragon': type === 'dragon',
+          'background-color-electric': type === 'electric',
+          'background-color-fairy': type === 'fairy',
+          'background-color-fighting': type === 'fighting',
+          'background-color-fire': type === 'fire',
+          'background-color-flying': type === 'flying',
+          'background-color-ghost': type === 'ghost',
+          'background-color-grass': type === 'grass',
+          'background-color-ground': type === 'ground',
+          'background-color-ice': type === 'ice',
+          'background-color-normal': type === 'normal',
+          'background-color-poison': type === 'poison',
+          'background-color-psychic': type === 'psychic',
+          'background-color-rock': type === 'rock',
+          'background-color-steel': type === 'steel',
+          'background-color-water': type === 'water',
+        }">{{ type }}</span>
+      </div>
     </div>
     <br>
   </div>
 </div>
 
 <div class="pokedex__pagination">
-  <p></p>
-
-  <div class="pokedex__pagination-buttons">
-    <button>previous</button>
-    <button (click)="updateOffset(0)">1</button>
-    <button (click)="updateOffset(1)">2</button>
-    <button (click)="updateOffset(2)">3</button>
-    <button (click)="updateOffset(3)">4</button>
-    <button (click)="updateOffset(4)">5</button>
-    <button>next</button>
+  <div class="pokedex__pagination-amount">
+    <p>Total: {{ count }}</p>
   </div>
 
-  <select #amount (change)="updateLimit(amount.value)" name="select">
-    <option default>12</option>
-    <option>24</option>
-    <option>36</option>
-  </select>
+  <div class="pokedex__pagination-buttons">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+      <ul class="pagination-list">
+        <li><button (click)="updateOffset(0)" class="pagination-link" aria-label="Goto page 1">1</button></li>
+        <li><span class="pagination-ellipsis">&hellip;</span></li>
+        <li><button (click)="updateOffset(3)" class="pagination-link" aria-label="Goto page 45">4</button></li>
+        <li><button (click)="updateOffset(4)" class="pagination-link is-current" aria-label="Page 46" aria-current="page">5</button></li>
+        <li><button (click)="updateOffset(5)" class="pagination-link" aria-label="Goto page 47">6</button></li>
+        <li><span class="pagination-ellipsis">&hellip;</span></li>
+        <li><button (click)="updateOffset(9)" class="pagination-link" aria-label="Goto page 86">10</button></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="pokedex__pagination-items">
+    <p>items/page:</p>
+
+    <div class="dropdown is-up" [ngClass]="{'is-active': dropdownState}">
+      <div class="dropdown-trigger">
+        <button (click)="toggleDropdownState()" class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+          <span>{{ limit }}</span>
+          <span class="icon is-small">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+        </button>
+      </div>
+      <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+        <div class="dropdown-content">
+          <div (click)="updateLimit(12)" class="dropdown-item">
+            12
+          </div>
+          <div (click)="updateLimit(24)" class="dropdown-item">
+            24
+          </div>
+          <div (click)="updateLimit(36)" class="dropdown-item">
+            36
+          </div>
+          <div (click)="updateLimit(48)" class="dropdown-item">
+            48
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>

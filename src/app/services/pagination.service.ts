@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, filter } from 'rxjs';
+import { BehaviorSubject, Observable, filter, from, map, mergeMap, tap } from 'rxjs';
 import { PokemonService } from './pokemon.service';
 
 @Injectable({
@@ -9,15 +9,15 @@ export class PaginationService {
   pokemonList$ = new BehaviorSubject<any[]>([]);
   offset$ = new BehaviorSubject<number>(0);
   limit$ = new BehaviorSubject<number>(12);
-  count$ = new BehaviorSubject<number>(0);
 
   constructor(private pokemonService: PokemonService) {
     this.getPokemons();
   }
 
   private getPokemons() {
-    this.pokemonService.getPokemonList(this.offset$.value, this.limit$.value).subscribe({
-      next: pokemon => {
+    this.pokemonService.getPokemonList(this.offset$.value, this.limit$.value)
+    .subscribe({
+      next: (pokemon: any) => {
         this.pokemonList$.value[pokemon.id - this.offset$.value - 1] = {
           urlImage: pokemon.sprites.other.dream_world.front_default,
           number: pokemon.id,
@@ -54,7 +54,7 @@ export class PaginationService {
     return this.pokemonList$.asObservable();
   }
 
-  public getCount(): Observable<any> {
-    return this.count$.asObservable();
+  public getCount(): Observable<number> {
+    return this.pokemonService.count$.asObservable();
   }
 }
