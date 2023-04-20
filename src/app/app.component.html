@@ -1,12 +1,35 @@
 <h2>Welcome to Pokedex</h2>
-<div *ngFor="let pokemon of pokemonList">
-  <img [src]="pokemon.urlImage" [alt]="pokemon.name">
-  <h4>{{ pokemon.name }}</h4>
-  <p>{{ pokemon.height }}</p>
-  <p>{{ pokemon.weight }}</p>
 
-  <div *ngFor="let type of pokemon.types">
-    <span>{{ type }}</span>
+<div class="pokedex__pokemon-list">
+  <div *ngFor="let pokemon of pokemonList" class="pokedex__pokemon">
+    <img [src]="pokemon?.urlImage" [alt]="pokemon?.name">
+    <h4>{{ pokemon?.name }}</h4>
+    <p>{{ pokemon?.height }}</p>
+    <p>{{ pokemon?.weight }}</p>
+
+    <div *ngFor="let type of pokemon?.types">
+      <span>{{ type }}</span>
+    </div>
+    <br>
   </div>
-  <br>
+</div>
+
+<div class="pokedex__pagination">
+  <p></p>
+
+  <div class="pokedex__pagination-buttons">
+    <button>previous</button>
+    <button (click)="updateOffset(0)">1</button>
+    <button (click)="updateOffset(1)">2</button>
+    <button (click)="updateOffset(2)">3</button>
+    <button (click)="updateOffset(3)">4</button>
+    <button (click)="updateOffset(4)">5</button>
+    <button>next</button>
+  </div>
+
+  <select #amount (change)="updateLimit(amount.value)" name="select">
+    <option default>12</option>
+    <option>24</option>
+    <option>36</option>
+  </select>
 </div>
