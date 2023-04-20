@@ -1,34 +1,43 @@
-import { IPokemonInfo } from './interfaces/IPokemon';
-import { PokemonService } from './services/pokemon.service';
-import { Component, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { PaginationService } from './services/pagination.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  pokemonList: IPokemonInfo[]; // oficial
+export class AppComponent implements OnInit, OnDestroy {
+  pokemonList: any[];
+  offset: number;
+  limit: number;
 
-  constructor(private pokemonService: PokemonService) { }
+  subs: Subscription[] = [];
+
+  constructor(private paginationService: PaginationService) { }
 
   ngOnInit(): void {
-    this.getPokemons();
+    this.subs.push(this.paginationService.getLimit().subscribe(
+      limit => this.limit = limit
+    ));
+    this.subs.push(this.paginationService.getOffset().subscribe(
+      offset => this.offset = offset
+    ));
+    this.subs.push(this.paginationService.getPokemonList().subscribe(
+      pokemonList => this.pokemonList = pokemonList
+    ));
   }
 
-  getPokemons(): void {
-    this.pokemonService.getPokemonList().subscribe({
-      next: pokemons => {
-        this.pokemonList = [];
-        pokemons.forEach(pokemon => this.getPokemonInfo(pokemon.url));
-      },
-    });
+  public updateOffset(value: number): void {
+    value = (value * this.limit);
+    this.paginationService.setOffset(value);
   }
 
-  getPokemonInfo(url: string): void {
-    this.pokemonService.getPokemonInfo(url).subscribe({
-      next: pokemon => this.pokemonList.push(pokemon),
-      complete: () => console.log(this.pokemonList),
-    });
+  public updateLimit(value: string): void {
+    this.paginationService.setLimit(parseInt(value));
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach(sub => sub.unsubscribe);
   }
 }
