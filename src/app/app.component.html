@@ -9,9 +9,9 @@
       <img [src]="pokemon?.urlImage" [alt]="pokemon?.name">
     </div>
     <div class="pokedex__pokemon-info">
-      <h4>{{ pokemon?.name }}</h4>
+      <p>{{ pokemon?.name }}</p>
       <div class="pokedex__pokemon-type" *ngFor="let type of pokemon?.types">
-        <span class="pill" [ngClass]="{
+        <span class="types" [ngClass]="{
           'background-color-bug': type === 'bug',
           'background-color-dark': type === 'dark',
           'background-color-dragon': type === 'dragon',
@@ -33,7 +33,6 @@
         }">{{ type }}</span>
       </div>
     </div>
-    <br>
   </div>
 </div>
 

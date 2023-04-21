@@ -37,11 +37,12 @@ header {
 
   .pokedex__pokemon-card {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     width: 240px;
     height: 320px;
+    padding: 16px;
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 
@@ -61,9 +62,26 @@ header {
 
     .pokedex__pokemon-info {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       flex-direction: column;
+      font-weight: bold;
+      width: 100%;
+      margin: 8px 0;
+
+      .types {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 4px;
+
+        border-radius: 5px;
+        line-height: 110%;
+        width: 120px;
+        height: 18px;
+        font-size: 14px;
+        font-weight: 400;
+      }
     }
   }
 }
@@ -103,19 +121,6 @@ header {
       margin: 0 8px;
     }
   }
-}
-
-.pill{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 4px;
-
-  border-radius:5px;
-  line-height:28px;
-  width:120px;
-  height: 18px;
-  font-size: 14px;
 }
 
 .background-color-bug {
