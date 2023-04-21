@@ -1,15 +1,88 @@
+:host {
+  width: 100%;
+  max-width: 1080px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 16px;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 0 16px;
+
+  width: 100vw;
+  height: 48px;
+  color: #fff;
+  background-color: #D30A40;
+  margin-bottom: 24px;
+
+  h2 {
+    margin: 24px 0;
+  }
+}
+
 .pokedex__pokemon-list {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
+  gap: 24px;
 
-  .pokedex__pokemon {
+  .pokedex__pokemon-card {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+    width: 240px;
+    height: 320px;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+    .pokedex__pokemon-image {
+      width: 200px;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f1f1f1;
+
+      img {
+        max-width: 80%;
+        max-height: 80%;
+      }
+    }
+
+    .pokedex__pokemon-info {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+      font-weight: bold;
+      width: 100%;
+      margin: 8px 0;
+
+      .types {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 4px;
+
+        border-radius: 5px;
+        line-height: 110%;
+        width: 120px;
+        height: 18px;
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
   }
 }
 
@@ -18,4 +91,196 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
+  width: 100%;
+  margin-top: 24px;
+
+  &-amount {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+
+    p { margin: 0;}
+  }
+
+  &-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+  }
+
+  &-items {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+
+    p {
+      margin: 0 8px;
+    }
+  }
+}
+
+.background-color-bug {
+  background:-webkit-linear-gradient(180deg, #729f3f 50%, #729f3f 50%);
+  background:-ms-linear-gradient(180deg, #729f3f 50%, #729f3f 50%);
+  background:-moz-linear-gradient(180deg, #729f3f 50%, #729f3f 50%);
+  background:-o-linear-gradient(180deg, #729f3f 50%, #729f3f 50%);
+  background:linear-gradient(180deg, #729f3f 50%, #729f3f 50%);
+  background-color:#729f3f;color:#fff
+}
+
+.background-color-dark {
+  background:-webkit-linear-gradient(180deg, #707070 50%, #707070 50%);
+  background:-ms-linear-gradient(180deg, #707070 50%, #707070 50%);
+  background:-moz-linear-gradient(180deg, #707070 50%, #707070 50%);
+  background:-o-linear-gradient(180deg, #707070 50%, #707070 50%);
+  background:linear-gradient(180deg, #707070 50%, #707070 50%);
+  background-color:#707070;color:#fff
+}
+
+.background-color-dragon {
+  background:-webkit-linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
+  background:-ms-linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
+  background:-moz-linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
+  background:-o-linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
+  background:linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
+  background-color:#53a4cf;color:#fff
+}
+
+.background-color-electric {
+  background:-webkit-linear-gradient(180deg, #eed535 50%, #eed535 50%);
+  background:-ms-linear-gradient(180deg, #eed535 50%, #eed535 50%);
+  background:-moz-linear-gradient(180deg, #eed535 50%, #eed535 50%);
+  background:-o-linear-gradient(180deg, #eed535 50%, #eed535 50%);
+  background:linear-gradient(180deg, #eed535 50%, #eed535 50%);
+  background-color:#eed535;color:#212121
+}
+
+.background-color-fairy {
+  background:-webkit-linear-gradient(180deg, #fdb9e9 50%, #fdb9e9 50%);
+  background:-ms-linear-gradient(180deg, #fdb9e9 50%, #fdb9e9 50%);
+  background:-moz-linear-gradient(180deg, #fdb9e9 50%, #fdb9e9 50%);
+  background:-o-linear-gradient(180deg, #fdb9e9 50%, #fdb9e9 50%);
+  background:linear-gradient(180deg, #fdb9e9 50%, #fdb9e9 50%);
+  background-color:#fdb9e9;color:#212121
+}
+
+.background-color-fighting {
+  background:-webkit-linear-gradient(180deg, #d56723 50%, #d56723 50%);
+  background:-ms-linear-gradient(180deg, #d56723 50%, #d56723 50%);
+  background:-moz-linear-gradient(180deg, #d56723 50%, #d56723 50%);
+  background:-o-linear-gradient(180deg, #d56723 50%, #d56723 50%);
+  background:linear-gradient(180deg, #d56723 50%, #d56723 50%);
+  background-color:#d56723;color:#fff
+}
+
+.background-color-fire {
+  background:-webkit-linear-gradient(180deg, #fd7d24 50%, #fd7d24 50%);
+  background:-ms-linear-gradient(180deg, #fd7d24 50%, #fd7d24 50%);
+  background:-moz-linear-gradient(180deg, #fd7d24 50%, #fd7d24 50%);
+  background:-o-linear-gradient(180deg, #fd7d24 50%, #fd7d24 50%);
+  background:linear-gradient(180deg, #fd7d24 50%, #fd7d24 50%);
+  background-color:#fd7d24;color:#fff
+}
+
+.background-color-flying {
+  background:-webkit-linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
+  background:-ms-linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
+  background:-moz-linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
+  background:-o-linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
+  background:linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
+  background-color:#3dc7ef;color:#212121
+}
+
+.background-color-ghost {
+  background:-webkit-linear-gradient(180deg, #7b62a3 50%, #7b62a3 50%);
+  background:-ms-linear-gradient(180deg, #7b62a3 50%, #7b62a3 50%);
+  background:-moz-linear-gradient(180deg, #7b62a3 50%, #7b62a3 50%);
+  background:-o-linear-gradient(180deg, #7b62a3 50%, #7b62a3 50%);
+  background:linear-gradient(180deg, #7b62a3 50%, #7b62a3 50%);
+  background-color:#7b62a3;color:#fff
+}
+
+.background-color-grass {
+  background:-webkit-linear-gradient(180deg, #9bcc50 50%, #9bcc50 50%);
+  background:-ms-linear-gradient(180deg, #9bcc50 50%, #9bcc50 50%);
+  background:-moz-linear-gradient(180deg, #9bcc50 50%, #9bcc50 50%);
+  background:-o-linear-gradient(180deg, #9bcc50 50%, #9bcc50 50%);
+  background:linear-gradient(180deg, #9bcc50 50%, #9bcc50 50%);
+  background-color:#9bcc50;color:#212121
+}
+
+.background-color-ground {
+  background:-webkit-linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
+  background:-ms-linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
+  background:-moz-linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
+  background:-o-linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
+  background:linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
+  background-color:#f7de3f;color:#212121
+}
+
+.background-color-ice {
+  background:-webkit-linear-gradient(180deg, #51c4e7 50%, #51c4e7 50%);
+  background:-ms-linear-gradient(180deg, #51c4e7 50%, #51c4e7 50%);
+  background:-moz-linear-gradient(180deg, #51c4e7 50%, #51c4e7 50%);
+  background:-o-linear-gradient(180deg, #51c4e7 50%, #51c4e7 50%);
+  background:linear-gradient(180deg, #51c4e7 50%, #51c4e7 50%);
+  background-color:#51c4e7;color:#212121
+}
+
+.background-color-normal {
+  background:-webkit-linear-gradient(180deg, #a4acaf 50%, #a4acaf 50%);
+  background:-ms-linear-gradient(180deg, #a4acaf 50%, #a4acaf 50%);
+  background:-moz-linear-gradient(180deg, #a4acaf 50%, #a4acaf 50%);
+  background:-o-linear-gradient(180deg, #a4acaf 50%, #a4acaf 50%);
+  background:linear-gradient(180deg, #a4acaf 50%, #a4acaf 50%);
+  background-color:#a4acaf;color:#212121
+}
+
+.background-color-poison {
+  background:-webkit-linear-gradient(180deg, #b97fc9 50%, #b97fc9 50%);
+  background:-ms-linear-gradient(180deg, #b97fc9 50%, #b97fc9 50%);
+  background:-moz-linear-gradient(180deg, #b97fc9 50%, #b97fc9 50%);
+  background:-o-linear-gradient(180deg, #b97fc9 50%, #b97fc9 50%);
+  background:linear-gradient(180deg, #b97fc9 50%, #b97fc9 50%);
+  background-color:#b97fc9;color:#fff
+}
+
+.background-color-psychic {
+  background:-webkit-linear-gradient(180deg, #f366b9 50%, #f366b9 50%);
+  background:-ms-linear-gradient(180deg, #f366b9 50%, #f366b9 50%);
+  background:-moz-linear-gradient(180deg, #f366b9 50%, #f366b9 50%);
+  background:-o-linear-gradient(180deg, #f366b9 50%, #f366b9 50%);
+  background:linear-gradient(180deg, #f366b9 50%, #f366b9 50%);
+  background-color:#f366b9;color:#fff
+}
+
+.background-color-rock {
+  background:-webkit-linear-gradient(180deg, #a38c21 50%, #a38c21 50%);
+  background:-ms-linear-gradient(180deg, #a38c21 50%, #a38c21 50%);
+  background:-moz-linear-gradient(180deg, #a38c21 50%, #a38c21 50%);
+  background:-o-linear-gradient(180deg, #a38c21 50%, #a38c21 50%);
+  background:linear-gradient(180deg, #a38c21 50%, #a38c21 50%);
+  background-color:#a38c21;color:#fff
+}
+
+.background-color-steel {
+  background:-webkit-linear-gradient(180deg, #9eb7b8 50%, #9eb7b8 50%);
+  background:-ms-linear-gradient(180deg, #9eb7b8 50%, #9eb7b8 50%);
+  background:-moz-linear-gradient(180deg, #9eb7b8 50%, #9eb7b8 50%);
+  background:-o-linear-gradient(180deg, #9eb7b8 50%, #9eb7b8 50%);
+  background:linear-gradient(180deg, #9eb7b8 50%, #9eb7b8 50%);
+  background-color:#9eb7b8;color:#212121
+}
+
+.background-color-water {
+  background:-webkit-linear-gradient(180deg, #4592c4 50%, #4592c4 50%);
+  background:-ms-linear-gradient(180deg, #4592c4 50%, #4592c4 50%);
+  background:-moz-linear-gradient(180deg, #4592c4 50%, #4592c4 50%);
+  background:-o-linear-gradient(180deg, #4592c4 50%, #4592c4 50%);
+  background:linear-gradient(180deg, #4592c4 50%, #4592c4 50%);
+  background-color:#4592c4;color:#fff
 }
