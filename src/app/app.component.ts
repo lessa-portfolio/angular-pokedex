@@ -1,6 +1,6 @@
-import { Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PaginationService } from './services/pagination.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,16 +8,16 @@ import { PaginationService } from './services/pagination.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  dropdownState: boolean = false;
+  public dropdownState: boolean = false;
 
-  numberOfPages: number;
-  currentPage: number;
-  offset: number;
-  limit: number;
-  count: number;
-  pokemonList: any[];
+  public numberOfPages: number;
+  public currentPage: number;
+  public offset: number;
+  public limit: number;
+  public count: number;
+  public pokemonList: any[];
 
-  subs: Subscription[] = [];
+  private subs: Subscription[] = [];
 
   constructor(private paginationService: PaginationService) { }
 

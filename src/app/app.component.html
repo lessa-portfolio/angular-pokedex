@@ -44,13 +44,15 @@
   <div class="pokedex__pagination-buttons">
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
       <ul class="pagination-list">
-        <li><button (click)="updateOffset(0)" class="pagination-link" aria-label="Goto page 1">1</button></li>
+        <li><button (click)="updateOffset(0)" class="pagination-link" aria-label="Goto page 1">First</button></li>
         <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><button (click)="updateOffset(3)" class="pagination-link" aria-label="Goto page 45">4</button></li>
-        <li><button (click)="updateOffset(4)" class="pagination-link is-current" aria-label="Page 46" aria-current="page">5</button></li>
-        <li><button (click)="updateOffset(5)" class="pagination-link" aria-label="Goto page 47">6</button></li>
+        <li><button (click)="updateOffset(currentPage - 2)" class="pagination-link" aria-label="Page 46" aria-current="page" *ngIf="currentPage >= 2">{{ currentPage - 1 }}</button></li>
+        <li><button (click)="updateOffset(currentPage - 1)" class="pagination-link" aria-label="Page 46" aria-current="page" *ngIf="currentPage >= 1">{{ currentPage }}</button></li>
+        <li><button (click)="updateOffset(currentPage)" class="pagination-link is-current" aria-label="Goto page 47">{{ currentPage + 1 }}</button></li>
+        <li><button (click)="updateOffset(currentPage + 1)" class="pagination-link" aria-label="Goto page 47">{{ currentPage + 2 }}</button></li>
+        <li><button (click)="updateOffset(currentPage + 2)" class="pagination-link" aria-label="Goto page 47">{{ currentPage + 3 }}</button></li>
         <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><button (click)="updateOffset(9)" class="pagination-link" aria-label="Goto page 86">10</button></li>
+        <li><button (click)="updateOffset(numberOfPages - 5)" class="pagination-link" aria-label="Goto page 86">{{ numberOfPages }}</button></li>
       </ul>
     </nav>
   </div>

@@ -15,7 +15,7 @@ export class PokemonService {
 
   constructor(private http: HttpClient) { }
 
-  getPokemonList(offset = 0, limit = 12): Observable<any> {
+  public getPokemonList(offset = 0, limit = 12): Observable<IPokemonView> {
     return this.http.get<IPokemonListResponse>(`${ this.API_URL }?offset=${ offset }&limit=${ limit }`)
       .pipe(
         tap(value => this.count$.next(value.count)),
@@ -27,7 +27,7 @@ export class PokemonService {
       )
   }
 
-  getPokemonInfo(url: string): Observable<IPokemonView> {
+  public getPokemonInfo(url: string): Observable<IPokemonView> {
     return this.http.get<IPokemonResponse>(url).pipe(
       map((pokemonInfoRaw: IPokemonResponse): IPokemonView => pokemonInfoRawToPokemonView(pokemonInfoRaw)),
     );
