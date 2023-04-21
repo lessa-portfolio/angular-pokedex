@@ -7,8 +7,8 @@ import { PokemonService } from './pokemon.service';
 })
 export class PaginationService {
   pokemonList$ = new BehaviorSubject<any[]>([]);
+  numberOfPages$ = new BehaviorSubject<number>(0);
   currentPage$ = new BehaviorSubject<number>(0);
-  amountPages$ = new BehaviorSubject<number>(0);
   offset$ = new BehaviorSubject<number>(0);
   limit$ = new BehaviorSubject<number>(12);
 
@@ -38,13 +38,13 @@ export class PaginationService {
   public setOffset(newOffset: number): void {
     this.offset$.next(newOffset);
     this.updateCurrentPage(newOffset, this.limit$.getValue());
-    this.updateAmountPages(this.pokemonService.count$.getValue(), this.limit$.value);
+    this.updateNumberOfPages(this.pokemonService.count$.getValue(), this.limit$.value);
     this.getPokemons();
   }
 
   public setLimit(newlimit: number): void {
     this.limit$.next(newlimit);
-    this.updateAmountPages(this.pokemonService.count$.getValue(), newlimit);
+    this.updateNumberOfPages(this.pokemonService.count$.getValue(), newlimit);
     this.getPokemons();
   }
 
@@ -69,8 +69,8 @@ export class PaginationService {
     return this.currentPage$.asObservable();
   }
 
-  public getAmountPages(): Observable<number> {
-    return this.amountPages$.asObservable();
+  public getNumberOfPages(): Observable<number> {
+    return this.numberOfPages$.asObservable();
   }
 
   // methods
@@ -78,7 +78,7 @@ export class PaginationService {
     this.currentPage$.next(Math.trunc(offset / limit));
   }
 
-  private updateAmountPages(count: number, limit: number): void {
-    this.amountPages$.next(Math.trunc(count / limit));
+  private updateNumberOfPages(count: number, limit: number): void {
+    this.numberOfPages$.next(Math.trunc(count / limit));
   }
 }

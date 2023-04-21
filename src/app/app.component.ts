@@ -10,12 +10,12 @@ import { PaginationService } from './services/pagination.service';
 export class AppComponent implements OnInit, OnDestroy {
   dropdownState: boolean = false;
 
-  pokemonList: any[];
+  numberOfPages: number;
   currentPage: number;
-  amountPages: number;
   offset: number;
   limit: number;
   count: number;
+  pokemonList: any[];
 
   subs: Subscription[] = [];
 
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subs.push(this.paginationService.getLimit().subscribe(limit => this.limit = limit));
     this.subs.push(this.paginationService.getOffset().subscribe(offset => this.offset = offset));
     this.subs.push(this.paginationService.getCurrentPage().subscribe(currentPage => this.currentPage = currentPage));
-    this.subs.push(this.paginationService.getAmountPages().subscribe(amountPages => this.amountPages = amountPages));
+    this.subs.push(this.paginationService.getNumberOfPages().subscribe(numberOfPages => this.numberOfPages = numberOfPages));
     this.subs.push(this.paginationService.getPokemonList().subscribe(pokemonList => this.pokemonList = pokemonList));
 
     this.debug();
@@ -52,7 +52,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private debug(): void {
-    console.log('amountPages: ', this.amountPages);
+    console.log('numberOfPages: ', this.numberOfPages);
     console.log('currentPage: ', this.currentPage);
     console.log('offset: ', this.offset);
     console.log('limit: ', this.limit);
