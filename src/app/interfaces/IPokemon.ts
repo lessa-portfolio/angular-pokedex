@@ -1,8 +1,15 @@
 export interface IPokemonList {
   count:    number;
-  next:     string | null;
-  previous: string | null;
+  next:     string;
+  previous: string;
   results:  IPokemonInfo[];
+}
+
+export interface IPokemonView {
+  id:         number;
+  name:       string;
+  urlImage:   string;
+  types:      string[];
 }
 
 export interface IPokemonInfo {

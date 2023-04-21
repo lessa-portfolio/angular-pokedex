@@ -12,21 +12,17 @@ export class PaginationService {
   offset$ = new BehaviorSubject<number>(0);
   limit$ = new BehaviorSubject<number>(12);
 
+  count: number = 0;
+
   constructor(private pokemonService: PokemonService) {
+    this.pokemonService.getCount().subscribe(count => this.count = count);
     this.getPokemons();
   }
 
   private getPokemons() {
     this.pokemonService.getPokemonList(this.offset$.value, this.limit$.value)
     .subscribe({
-      next: (pokemon: any) => {
-        this.pokemonList$.value[pokemon.id - this.offset$.value - 1] = {
-          urlImage: pokemon.sprites.other.dream_world.front_default,
-          number: pokemon.id,
-          name: pokemon.name,
-          types: pokemon.types.map((t: any) => t.type.name),
-        }
-      },
+      next: (pokemon: any) => this.pokemonList$.value[pokemon.id - this.offset$.value - 1] = pokemon,
       complete: () => {
         while(this.pokemonList$.value.length > this.limit$.value)
           this.pokemonList$.value.pop();
@@ -38,13 +34,13 @@ export class PaginationService {
   public setOffset(newOffset: number): void {
     this.offset$.next(newOffset);
     this.updateCurrentPage(newOffset, this.limit$.getValue());
-    this.updateNumberOfPages(this.pokemonService.count$.getValue(), this.limit$.value);
+    this.updateNumberOfPages(this.count, this.limit$.value);
     this.getPokemons();
   }
 
   public setLimit(newlimit: number): void {
     this.limit$.next(newlimit);
-    this.updateNumberOfPages(this.pokemonService.count$.getValue(), newlimit);
+    this.updateNumberOfPages(this.count, newlimit);
     this.getPokemons();
   }
 
