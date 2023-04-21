@@ -44,15 +44,17 @@
   <div class="pokedex__pagination-buttons">
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
       <ul class="pagination-list">
-        <li><button (click)="updateOffset(0)" class="pagination-link" aria-label="Goto page 1">First</button></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><button (click)="updateOffset(currentPage - 2)" class="pagination-link" aria-label="Page 46" aria-current="page" *ngIf="currentPage >= 2">{{ currentPage - 1 }}</button></li>
-        <li><button (click)="updateOffset(currentPage - 1)" class="pagination-link" aria-label="Page 46" aria-current="page" *ngIf="currentPage >= 1">{{ currentPage }}</button></li>
-        <li><button (click)="updateOffset(currentPage)" class="pagination-link is-current" aria-label="Goto page 47">{{ currentPage + 1 }}</button></li>
-        <li><button (click)="updateOffset(currentPage + 1)" class="pagination-link" aria-label="Goto page 47">{{ currentPage + 2 }}</button></li>
-        <li><button (click)="updateOffset(currentPage + 2)" class="pagination-link" aria-label="Goto page 47">{{ currentPage + 3 }}</button></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><button (click)="updateOffset(numberOfPages - 5)" class="pagination-link" aria-label="Goto page 86">{{ numberOfPages }}</button></li>
+        <li *ngIf="currentPage >= 3"><button (click)="updateOffset(0)" class="pagination-link" aria-label="Goto page 1">1</button></li>
+        <li *ngIf="currentPage >= 3"><span class="pagination-ellipsis">&hellip;</span></li>
+
+        <li *ngIf="currentPage >= 2"><button (click)="updateOffset(currentPage - 2)" class="pagination-link" aria-label="Page 46" aria-current="page">{{ currentPage - 1 }}</button></li>
+        <li *ngIf="currentPage >= 1"><button (click)="updateOffset(currentPage - 1)" class="pagination-link" aria-label="Page 46" aria-current="page">{{ currentPage }}</button></li>
+        <li><button class="pagination-link is-current" aria-label="Goto page 47">{{ currentPage + 1 }}</button></li>
+        <li *ngIf="currentPage <= numberOfPages - 2"><button (click)="updateOffset(currentPage + 1)" class="pagination-link" aria-label="Goto page 47">{{ currentPage + 2 }}</button></li>
+        <li *ngIf="currentPage <= numberOfPages - 3"><button (click)="updateOffset(currentPage + 2)" class="pagination-link" aria-label="Goto page 47">{{ currentPage + 3  }}</button></li>
+
+        <li *ngIf="currentPage <= numberOfPages - 4"><span class="pagination-ellipsis">&hellip;</span></li>
+        <li *ngIf="currentPage <= numberOfPages - 4"><button (click)="updateOffset(numberOfPages - 1)" class="pagination-link" aria-label="Goto page 86">{{ numberOfPages }}</button></li>
       </ul>
     </nav>
   </div>

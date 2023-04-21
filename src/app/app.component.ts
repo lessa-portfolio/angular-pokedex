@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PaginationService } from './services/pagination.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -22,12 +22,13 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private paginationService: PaginationService) { }
 
   public ngOnInit(): void {
-    this.subs.push(this.paginationService.getCount().subscribe(count => this.count = count));
     this.subs.push(this.paginationService.getLimit().subscribe(limit => this.limit = limit));
     this.subs.push(this.paginationService.getOffset().subscribe(offset => this.offset = offset));
-    this.subs.push(this.paginationService.getCurrentPage().subscribe(currentPage => this.currentPage = currentPage));
     this.subs.push(this.paginationService.getNumberOfPages().subscribe(numberOfPages => this.numberOfPages = numberOfPages));
+    this.subs.push(this.paginationService.getCurrentPage().subscribe(currentPage => this.currentPage = currentPage));
     this.subs.push(this.paginationService.getPokemonList().subscribe(pokemonList => this.pokemonList = pokemonList));
+
+    this.count = this.paginationService.getCount();
 
     this.debug();
   }

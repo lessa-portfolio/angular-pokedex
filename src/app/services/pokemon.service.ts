@@ -9,22 +9,22 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PokemonService {
+  private readonly count: number = 1010;
   private readonly API_URL: string = 'https://pokeapi.co/api/v2/pokemon';
-
-  count$ = new BehaviorSubject<number>(0);
 
   constructor(private http: HttpClient) { }
 
   public getPokemonList(offset = 0, limit = 12): Observable<IPokemonView> {
-    return this.http.get<IPokemonListResponse>(`${ this.API_URL }?offset=${ offset }&limit=${ limit }`)
-      .pipe(
-        tap(value => this.count$.next(value.count)),
-        map(value => value.results),
-        map(value => from(value).pipe(
-          mergeMap(pokemon => this.getPokemonInfo(pokemon.url))
-        )),
-        mergeMap(value => value),
-      )
+
+    if (offset + limit > this.count) limit = this.count - offset;
+
+    return this.http.get<IPokemonListResponse>(`${ this.API_URL }?offset=${ offset }&limit=${ limit }`).pipe(
+      map(value => value.results),
+      map(value => from(value).pipe(
+        mergeMap(pokemon => this.getPokemonInfo(pokemon.url))
+      )),
+      mergeMap(value => value),
+    )
   }
 
   public getPokemonInfo(url: string): Observable<IPokemonView> {
@@ -33,7 +33,7 @@ export class PokemonService {
     );
   }
 
-  public getCount(): Observable<number> {
-    return this.count$.asObservable();
+  public getCount(): number {
+    return this.count;
   }
 }

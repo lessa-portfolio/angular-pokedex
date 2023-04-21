@@ -12,35 +12,30 @@ export class PaginationService {
   offset$ = new BehaviorSubject<number>(0);
   limit$ = new BehaviorSubject<number>(12);
 
-  count: number = 0;
-
   constructor(private pokemonService: PokemonService) {
-    this.pokemonService.getCount().subscribe(count => this.count = count);
+    this.updateNumberOfPages(this.pokemonService.getCount(), this.limit$.value);
     this.getPokemons();
   }
 
   private getPokemons() {
-    this.pokemonService.getPokemonList(this.offset$.value, this.limit$.value)
-    .subscribe({
-      next: (pokemon: any) => this.pokemonList$.value[pokemon.id - this.offset$.value - 1] = pokemon,
-      complete: () => {
-        while(this.pokemonList$.value.length > this.limit$.value)
-          this.pokemonList$.value.pop();
-      }
+    this.pokemonList$.next([]);
+    this.pokemonService.getPokemonList(this.offset$.value, this.limit$.value).subscribe(pokemon => {
+      this.pokemonList$.value[pokemon.id - this.offset$.value - 1] = pokemon;
     });
   }
 
   // sets
   public setOffset(newOffset: number): void {
     this.offset$.next(newOffset);
-    this.updateCurrentPage(newOffset, this.limit$.getValue());
-    this.updateNumberOfPages(this.count, this.limit$.value);
+    this.updateNumberOfPages(this.pokemonService.getCount(), this.limit$.value);
+    this.updateCurrentPage(newOffset, this.limit$.value);
     this.getPokemons();
   }
 
   public setLimit(newlimit: number): void {
     this.limit$.next(newlimit);
-    this.updateNumberOfPages(this.count, newlimit);
+    this.updateNumberOfPages(this.pokemonService.getCount(), newlimit);
+    this.updateCurrentPage(this.offset$.value, this.limit$.value);
     this.getPokemons();
   }
 
@@ -57,8 +52,8 @@ export class PaginationService {
     return this.pokemonList$.asObservable();
   }
 
-  public getCount(): Observable<number> {
-    return this.pokemonService.count$.asObservable();
+  public getCount(): number {
+    return this.pokemonService.getCount();
   }
 
   public getCurrentPage(): Observable<number> {
@@ -75,6 +70,6 @@ export class PaginationService {
   }
 
   private updateNumberOfPages(count: number, limit: number): void {
-    this.numberOfPages$.next(Math.trunc(count / limit));
+    this.numberOfPages$.next(Math.trunc(count / limit) + 1);
   }
 }
