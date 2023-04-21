@@ -28,15 +28,19 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subs.push(this.paginationService.getCurrentPage().subscribe(currentPage => this.currentPage = currentPage));
     this.subs.push(this.paginationService.getAmountPages().subscribe(amountPages => this.amountPages = amountPages));
     this.subs.push(this.paginationService.getPokemonList().subscribe(pokemonList => this.pokemonList = pokemonList));
+
+    this.debug();
   }
 
   public updateOffset(value: number): void {
     this.paginationService.setOffset(value * this.limit);
+    this.debug();
   }
 
   public updateLimit(value: number): void {
     this.paginationService.setLimit(value);
     this.toggleDropdownState();
+    this.debug();
   }
 
   public toggleDropdownState(): void {
@@ -45,5 +49,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.subs.forEach(sub => sub.unsubscribe);
+  }
+
+  private debug(): void {
+    console.log('amountPages: ', this.amountPages);
+    console.log('currentPage: ', this.currentPage);
+    console.log('offset: ', this.offset);
+    console.log('limit: ', this.limit);
+    console.log('count: ', this.count);
   }
 }

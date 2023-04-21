@@ -34,18 +34,23 @@ export class PaginationService {
     });
   }
 
-  public setOffset(newOffset: number) {
+  // sets
+  public setOffset(newOffset: number): void {
     this.offset$.next(newOffset);
+    this.updateCurrentPage(newOffset, this.limit$.getValue());
+    this.updateAmountPages(this.pokemonService.count$.getValue(), this.limit$.value);
     this.getPokemons();
   }
 
+  public setLimit(newlimit: number): void {
+    this.limit$.next(newlimit);
+    this.updateAmountPages(this.pokemonService.count$.getValue(), newlimit);
+    this.getPokemons();
+  }
+
+  //gets
   public getOffset(): Observable<number> {
     return this.offset$.asObservable();
-  }
-
-  public setLimit(newlimit: number) {
-    this.limit$.next(newlimit);
-    this.getPokemons();
   }
 
   public getLimit(): Observable<number> {
@@ -68,6 +73,12 @@ export class PaginationService {
     return this.amountPages$.asObservable();
   }
 
-  //   this.amountPages = Math.trunc(this.count / this.limit);
-  //   this.currentPage = Math.trunc(this.offset / this.limit);
+  // methods
+  private updateCurrentPage(offset: number, limit: number): void {
+    this.currentPage$.next(Math.trunc(offset / limit));
+  }
+
+  private updateAmountPages(count: number, limit: number): void {
+    this.amountPages$.next(Math.trunc(count / limit));
+  }
 }
