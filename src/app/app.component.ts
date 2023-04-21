@@ -1,4 +1,4 @@
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PaginationService } from './services/pagination.service';
 
@@ -9,7 +9,10 @@ import { PaginationService } from './services/pagination.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   dropdownState: boolean = false;
+
   pokemonList: any[];
+  currentPage: number;
+  amountPages: number;
   offset: number;
   limit: number;
   count: number;
@@ -18,24 +21,17 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private paginationService: PaginationService) { }
 
-  ngOnInit(): void {
-    this.subs.push(this.paginationService.getCount().subscribe(
-      count => this.count = count
-    ));
-    this.subs.push(this.paginationService.getLimit().subscribe(
-      limit => this.limit = limit
-    ));
-    this.subs.push(this.paginationService.getOffset().subscribe(
-      offset => this.offset = offset
-    ));
-    this.subs.push(this.paginationService.getPokemonList().subscribe(
-      pokemonList => this.pokemonList = pokemonList
-    ));
+  public ngOnInit(): void {
+    this.subs.push(this.paginationService.getCount().subscribe(count => this.count = count));
+    this.subs.push(this.paginationService.getLimit().subscribe(limit => this.limit = limit));
+    this.subs.push(this.paginationService.getOffset().subscribe(offset => this.offset = offset));
+    this.subs.push(this.paginationService.getCurrentPage().subscribe(currentPage => this.currentPage = currentPage));
+    this.subs.push(this.paginationService.getAmountPages().subscribe(amountPages => this.amountPages = amountPages));
+    this.subs.push(this.paginationService.getPokemonList().subscribe(pokemonList => this.pokemonList = pokemonList));
   }
 
   public updateOffset(value: number): void {
-    value = (value * this.limit);
-    this.paginationService.setOffset(value);
+    this.paginationService.setOffset(value * this.limit);
   }
 
   public updateLimit(value: number): void {
@@ -47,7 +43,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.dropdownState = !this.dropdownState;
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.subs.forEach(sub => sub.unsubscribe);
   }
 }

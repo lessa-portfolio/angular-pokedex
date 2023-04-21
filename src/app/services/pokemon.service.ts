@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap, map, mergeMap, from, BehaviorSubject, of } from 'rxjs';
-import { IPokemonListResponse } from '../interfaces/IPokeapi';
-import { IPokemonList } from '../interfaces/IPokemon';
+import { Observable, tap, map, mergeMap, from, BehaviorSubject } from 'rxjs';
+import { IPokemonListResponse, IPokemonResponse } from '../interfaces/IPokeapi';
 
 @Injectable({
   providedIn: 'root'
