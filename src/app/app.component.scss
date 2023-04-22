@@ -98,9 +98,8 @@ header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 100%;
-
-    p { margin: 0;}
+    width: 180px;
+    p { margin: 0 }
   }
 
   &-buttons {
@@ -109,17 +108,16 @@ header {
     align-items: center;
     width: 100%;
     gap: 8px;
+
+    button { cursor: pointer }
   }
 
   &-items {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 100%;
-
-    p {
-      margin: 0 8px;
-    }
+    width: 180px;
+    p { margin: 0 8px }
   }
 }
 
