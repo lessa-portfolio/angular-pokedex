@@ -1,27 +1,60 @@
-# Pokedex
+<h1 style="color: #333" align="center">Pokedex</h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
+<p align="center">
+  <a style="color: #F14668" href="#-project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a style="color: #F14668" href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a style="color: #F14668" href="#-backlog">Backlog</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a style="color: #F14668" href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a style="color: #F14668" href="#-auhtors">Auhtors</a>
+</p>
 
-## Development server
+<br>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<p align="center">
+  <img alt="Happy" src="images/pokedex-doc.png" width="100%">
+</p>
 
-## Code scaffolding
+## 📋 Project
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+A software that accesses the pokemon public API (<a style="color: #F14668" href="https://pokeapi.co/">Pokeapi.co</a>) and displays pokemon data to the user.
 
-## Build
+## 🖥️ Technologies
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+The project was developed using the following technologies:
 
-## Running unit tests
+- <a style="color: #F14668" href="https://nodejs.org/en/">Node.js</a>
+- <a style="color: #F14668" href="https://angular.io/">Angular</a>
+- <a style="color: #F14668" href="https://www.typescriptlang.org/">TypeScript</a>
+- <a style="color: #F14668" href="https://bulma.io/">Bulma</a>
+- <a style="color: #F14668" href="https://sass-lang.com/">SASS</a>
+- <a style="color: #F14668" href="https://karma-runner.github.io/latest/index.html">Karma</a>
+- <a style="color: #F14668" href="https://jasmine.github.io/">Jasmine</a>
+- <a style="color: #F14668" href="https://rxjs.dev/">RxJS</a>
+- <a style="color: #F14668" href="https://pages.github.com/">Github Pages</a>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 💭 Backlog
 
-## Running end-to-end tests
+List of features and their respective progress:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- [x] Integration with <a style="color: #F14668" href="https://pokeapi.co/">Pokeapi.co</a>
+- [x] Pokemon list pagination
+- [ ] Show more information about a specific pokemon
+- [ ] Responsive for all devices (from 320px to 1920px)
+- [ ] Show Skeleton while data is loading
+- [ ] Show pokemon list as a table (toogle button)
+- [ ] 90% unit test coverage
+- [ ] Dark mode
 
-## Further help
+List of devops setup and their respective progress:
+- [ ] Deploy with <a style="color: #F14668" href="https://pages.github.com/">Github Pages</a>
+- [ ] Creating a pipeline (CI/CD)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## 🎨 Layout
+
+All prototypes were tested using <a style="color: #F14668" href="http://figma.com/">Figma</a>.
+
+- <a style="color: #F14668" href="https://www.figma.com/file/ANko09UzvbWxy6ZueM3bMr/Untitled?node-id=0%3A1&t=xUCAJximGOO8yH7J-1">Responsive Layout Prototype</a>
+
+## ☕ Authors
+
+- <a style="color: #F14668" href="https://www.linkedin.com/in/lucaslessa7/">Lucas Lessa</a>
