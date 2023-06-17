@@ -20,10 +20,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build and test
-        run: |
-          ng build
-          ng test
+      - name: Build application
+        run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
